@@ -1,10 +1,11 @@
 package jpwpmeteotyka;
+import java.awt.event.*;
 
-
-public class SettingsGUI extends javax.swing.JFrame {
+public class SettingsGUI extends javax.swing.JFrame implements KeyListener {
 
     public SettingsGUI() {
         initComponents();
+      
     }
 
     
@@ -165,4 +166,19 @@ public class SettingsGUI extends javax.swing.JFrame {
     public javax.swing.JPanel settingsPanel;
     private javax.swing.JCheckBox substractCheckBox;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+      System.out.println("KeyTyped");
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println("KeyPressed");
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        System.out.println("KeyReleased");
+    }
 }

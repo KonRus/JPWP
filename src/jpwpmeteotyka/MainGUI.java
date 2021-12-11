@@ -4,27 +4,31 @@ package jpwpmeteotyka;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 import java.awt.event.ActionListener;
 
 
-public class MainGUI extends JFrame{
+public class MainGUI extends JFrame implements KeyListener{
     
    
     private MenuGUI menuGUI = new MenuGUI();
     private SettingsGUI settingsGUI = new SettingsGUI();
-    private GameGUI gameGUI = new GameGUI();
+    GameGUI gameGUI = new GameGUI();
+    JPanel gamePanel = gameGUI.gamePanel;
     private JPanel menuPanel = menuGUI.menuPanel;
     private JPanel settingsPanel = settingsGUI.settingsPanel;
-    private JPanel gamePanel = gameGUI.gamePanel;
+
     private CardLayout cardLayout = new CardLayout();
+    KeyListener keyListener;
     
-    
-    
-    
+   
 
     public MainGUI() {
         initComponents();
+        addKeyListener(this);
+        setFocusable(true);
+        setFocusTraversalKeysEnabled(false);
+    
         setTitle("METEOTYKA");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(1280,1024));
@@ -36,7 +40,7 @@ public class MainGUI extends JFrame{
         add(mainPanel);
         mainPanel.add(menuPanel,"mainMenuPanel");
         mainPanel.add(settingsPanel,"settingsPanel");
-        mainPanel.add(gamePanel,"gamePanel");
+        
 
 
         pack();
@@ -62,7 +66,11 @@ public class MainGUI extends JFrame{
         menuGUI.playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                gameGUI.initGameGUI();
+                mainPanel.add(gamePanel,"gamePanel");
                 cardLayout.show(mainPanel, "gamePanel");
+                
+            
 
             }
         });
@@ -76,6 +84,8 @@ public class MainGUI extends JFrame{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1280, 1024));
+
+        mainPanel.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -115,4 +125,23 @@ public class MainGUI extends JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+      
+        gameGUI.ship.moveShipRight();
+    
+    
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+      
+    }
+
 }
