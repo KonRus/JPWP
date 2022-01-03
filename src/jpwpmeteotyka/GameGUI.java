@@ -20,9 +20,9 @@ public class GameGUI extends JFrame implements ActionListener{
  public void initGameGUI(){
      
      meteorites = new Meteorite[]{
-        new Meteorite(100,1),
-        new Meteorite(500,-100),
-        new Meteorite(700,-200)    
+        new Meteorite(214,1),
+        new Meteorite(640,-100),
+        new Meteorite(1066,-200)    
             
     };
      
@@ -45,6 +45,7 @@ public class GameGUI extends JFrame implements ActionListener{
     private void initComponents() {
 
         gamePanel = new javax.swing.JPanel();
+        ansInput = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,11 +55,16 @@ public class GameGUI extends JFrame implements ActionListener{
         gamePanel.setLayout(gamePanelLayout);
         gamePanelLayout.setHorizontalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
+            .addGroup(gamePanelLayout.createSequentialGroup()
+                .addGap(420, 420, 420)
+                .addComponent(ansInput, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(533, Short.MAX_VALUE))
         );
         gamePanelLayout.setVerticalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1024, Short.MAX_VALUE)
+            .addGroup(gamePanelLayout.createSequentialGroup()
+                .addComponent(ansInput, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1000, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -75,7 +81,7 @@ public class GameGUI extends JFrame implements ActionListener{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
- 
+    
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -85,6 +91,7 @@ public class GameGUI extends JFrame implements ActionListener{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel ansInput;
     public javax.swing.JPanel gamePanel;
     // End of variables declaration//GEN-END:variables
 

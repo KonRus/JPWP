@@ -128,13 +128,20 @@ public class MainGUI extends JFrame implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-        
+        System.out.println("Key Typed: " + e.getKeyChar());
+        gameGUI.ansInput.setText(gameGUI.ansInput.getText() + e.getKeyChar());
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
+         if (e.getKeyCode() == KeyEvent.VK_LEFT){
+             gameGUI.ship.moveShipLeft();
+         }
+         else if (e.getKeyCode() == KeyEvent.VK_RIGHT){
+             gameGUI.ship.moveShipRight();
+         }
       
-        gameGUI.ship.moveShipRight();
+        
     
     
     }
