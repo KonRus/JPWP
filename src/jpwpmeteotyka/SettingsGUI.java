@@ -1,11 +1,39 @@
 package jpwpmeteotyka;
-import java.awt.event.*;
+import java.util.*;
 
-public class SettingsGUI extends javax.swing.JFrame implements KeyListener {
+public class SettingsGUI extends javax.swing.JFrame{
+    
+    ArrayList<Integer> settingsCheckBox;
 
     public SettingsGUI() {
+        
         initComponents();
-      
+        IsSelectedCB();
+
+     
+      }
+      public void IsSelectedCB(){
+          settingsCheckBox = new ArrayList<Integer>();
+        if(addCheckBox.isSelected()){
+            settingsCheckBox.add(0);
+        }
+       
+        
+       if(subtractCheckBox.isSelected()){
+            settingsCheckBox.add(1);
+        }
+       
+        
+       
+       if(multiplyCheckBox.isSelected()){
+            settingsCheckBox.add(2);
+        }
+       
+       
+       if(divideCheckBox.isSelected()){
+            settingsCheckBox.add(3);
+        }
+        
     }
 
     
@@ -15,7 +43,7 @@ public class SettingsGUI extends javax.swing.JFrame implements KeyListener {
     private void initComponents() {
 
         settingsPanel = new javax.swing.JPanel();
-        substractCheckBox = new javax.swing.JCheckBox();
+        subtractCheckBox = new javax.swing.JCheckBox();
         addCheckBox = new javax.swing.JCheckBox();
         multiplyCheckBox = new javax.swing.JCheckBox();
         divideCheckBox = new javax.swing.JCheckBox();
@@ -24,13 +52,15 @@ public class SettingsGUI extends javax.swing.JFrame implements KeyListener {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        substractCheckBox.setText("Odejmowanie");
-        substractCheckBox.addActionListener(new java.awt.event.ActionListener() {
+        subtractCheckBox.setSelected(true);
+        subtractCheckBox.setText("Odejmowanie");
+        subtractCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                substractCheckBoxActionPerformed(evt);
+                subtractCheckBoxActionPerformed(evt);
             }
         });
 
+        addCheckBox.setSelected(true);
         addCheckBox.setText("Dodawanie");
         addCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -38,6 +68,7 @@ public class SettingsGUI extends javax.swing.JFrame implements KeyListener {
             }
         });
 
+        multiplyCheckBox.setSelected(true);
         multiplyCheckBox.setText("Mnożenie");
         multiplyCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -45,6 +76,7 @@ public class SettingsGUI extends javax.swing.JFrame implements KeyListener {
             }
         });
 
+        divideCheckBox.setSelected(true);
         divideCheckBox.setText("Dzielenie");
 
         jLabel1.setText("JAKIE DZIAŁANIA");
@@ -66,32 +98,32 @@ public class SettingsGUI extends javax.swing.JFrame implements KeyListener {
                         .addGap(40, 40, 40)
                         .addComponent(backButton))
                     .addGroup(settingsPanelLayout.createSequentialGroup()
-                        .addGap(590, 590, 590)
-                        .addComponent(jLabel1)))
-                .addContainerGap(599, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settingsPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(addCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(divideCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(substractCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                    .addComponent(multiplyCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(534, 534, 534))
+                        .addGap(75, 75, 75)
+                        .addComponent(addCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(117, 117, 117)
+                        .addComponent(subtractCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(settingsPanelLayout.createSequentialGroup()
+                                .addGap(134, 134, 134)
+                                .addComponent(multiplyCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(140, 140, 140)
+                                .addComponent(divideCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         settingsPanelLayout.setVerticalGroup(
             settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(settingsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
-                .addComponent(divideCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(addCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(substractCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(multiplyCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(180, 180, 180)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
+                .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(subtractCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(divideCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(multiplyCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(553, 553, 553)
                 .addComponent(backButton)
                 .addGap(177, 177, 177))
         );
@@ -100,33 +132,40 @@ public class SettingsGUI extends javax.swing.JFrame implements KeyListener {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(settingsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(settingsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(134, 134, 134))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(settingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 24, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 12, Short.MAX_VALUE)
+                .addComponent(settingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void addCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCheckBoxActionPerformed
-        // TODO add your handling code here:
+        IsSelectedCB();
+
     }//GEN-LAST:event_addCheckBoxActionPerformed
 
     private void multiplyCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiplyCheckBoxActionPerformed
-        // TODO add your handling code here:
+        IsSelectedCB();
+ 
     }//GEN-LAST:event_multiplyCheckBoxActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        IsSelectedCB();
+
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void substractCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_substractCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_substractCheckBoxActionPerformed
+    private void subtractCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subtractCheckBoxActionPerformed
+        IsSelectedCB();
+
+    }//GEN-LAST:event_subtractCheckBoxActionPerformed
 
 
     public static void main(String args[]) {
@@ -158,27 +197,14 @@ public class SettingsGUI extends javax.swing.JFrame implements KeyListener {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox addCheckBox;
+    public javax.swing.JCheckBox addCheckBox;
     public javax.swing.JButton backButton;
-    private javax.swing.JCheckBox divideCheckBox;
+    public javax.swing.JCheckBox divideCheckBox;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JCheckBox multiplyCheckBox;
+    public javax.swing.JCheckBox multiplyCheckBox;
     public javax.swing.JPanel settingsPanel;
-    private javax.swing.JCheckBox substractCheckBox;
+    public javax.swing.JCheckBox subtractCheckBox;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-      System.out.println("KeyTyped");
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        System.out.println("KeyPressed");
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        System.out.println("KeyReleased");
-    }
+   
 }

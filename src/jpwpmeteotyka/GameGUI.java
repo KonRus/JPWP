@@ -21,8 +21,14 @@ public class GameGUI extends JFrame implements ActionListener{
      
      meteorites = new Meteorite[]{
         new Meteorite(214,1),
+        new Meteorite(214,-150),
+        new Meteorite(214,-500),
         new Meteorite(640,-100),
-        new Meteorite(1066,-200)    
+        new Meteorite(640,-300),
+        new Meteorite(640,-800),
+        new Meteorite(1066,-200),   
+        new Meteorite(1066,-400),
+        new Meteorite(1066,-30)   
             
     };
      
@@ -95,10 +101,12 @@ public class GameGUI extends JFrame implements ActionListener{
     public javax.swing.JPanel gamePanel;
     // End of variables declaration//GEN-END:variables
 
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         for (Meteorite meteorite : meteorites){
             meteorite.moveMeteorite();
+            
         }
 
     }
