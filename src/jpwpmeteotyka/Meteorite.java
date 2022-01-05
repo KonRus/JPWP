@@ -2,12 +2,15 @@ package jpwpmeteotyka;
 
 import java.awt.*;
 import javax.swing.*;
+import java.util.ArrayList;
 
 
 public class Meteorite extends JLabel{
+    ArrayList<Integer> settingsCheckBox;
     
     int x;
     int y;
+    public int column;
     MathOperation mathOperation;
     public MathOperation[]  mathOperations = new MathOperation[] {
         new MathOperation (0, 100, 0, 100),
@@ -15,20 +18,33 @@ public class Meteorite extends JLabel{
         new MathOperation (0, 10, 0, 10),
         new MathOperation (1, 10, 1, 10),
         
+        
     };
-    Meteorite(int x, int y){
+    Meteorite(int y, ArrayList<Integer> settingsCheckBox, int column){
        
+       int x=0;
+       if(column == 1){
+           x=214;
+       }
+       else if(column == 2){
+           x=640;
+       }
+       else if(column == 3){
+           x=1066;
+       }
+       this.column = column;
        setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("meteorite.png")).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
        initLocation(x,y);
        setOperation();
-       this.mathOperation = mathOperations[(int)Math.floor(Math.random()*(3-0))];
-       setText(this.mathOperation.operation +"   "+ this.mathOperation.result);
+       this.settingsCheckBox=settingsCheckBox;
+       assignOperation();
        setVerticalTextPosition(JLabel.BOTTOM);
        setHorizontalTextPosition(JLabel.CENTER);
-       
+       setForeground(Color.WHITE);
        
        
     }
+    
     public void setOperation(){
         mathOperations[0].result=mathOperations[0].a+mathOperations[0].b;
         mathOperations[0].operation=mathOperations[0].a+" + "+mathOperations[0].b;
@@ -42,24 +58,23 @@ public class Meteorite extends JLabel{
     }
 
    public void moveMeteorite(){
-        y = y+3;
+        y = y+30;
         this.setLocation(this.x, y);
-        if ( this.y >= 1000){
-            int min = -1;
-            int max = -400;
-            int newy = (int)Math.floor(Math.random()*(max-min+1)+min);
-            //zycie -1
-            //seticon wybuchu
-            this.initLocation(this.x ,newy );
-            
-        }
-        System.out.println(y);
+        
+      
        
     }
    public void initLocation(int x, int y){
        setBounds(x,y,100,150);
        this.x = x;
        this.y = y;
+   }
+   public void assignOperation(){
+       int settingsCheckBoxLength = this.settingsCheckBox.size();
+       int random = (int)Math.floor(Math.random()*(settingsCheckBoxLength-0));
+       int index = settingsCheckBox.get(random);
+       this.mathOperation = mathOperations[index];
+       setText(this.mathOperation.operation+ "   "+mathOperation.result);
    }
    
 }

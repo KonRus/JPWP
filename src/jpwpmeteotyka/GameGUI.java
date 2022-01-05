@@ -3,6 +3,7 @@ package jpwpmeteotyka;
 import java.awt.event.*;
 import java.awt.Color;
 import javax.swing.*;
+import java.util.ArrayList;
 
 
 
@@ -10,6 +11,8 @@ public class GameGUI extends JFrame implements ActionListener{
     private Timer timer;
     private Meteorite[] meteorites; 
     public Ship ship;
+    public Player player;
+    ArrayList<Integer> settingsCheckBox;
 
     
     public GameGUI() {
@@ -20,18 +23,18 @@ public class GameGUI extends JFrame implements ActionListener{
  public void initGameGUI(){
      
      meteorites = new Meteorite[]{
-        new Meteorite(214,1),
-        new Meteorite(214,-150),
-        new Meteorite(214,-500),
-        new Meteorite(640,-100),
-        new Meteorite(640,-300),
-        new Meteorite(640,-800),
-        new Meteorite(1066,-200),   
-        new Meteorite(1066,-400),
-        new Meteorite(1066,-30)   
+        new Meteorite(1, settingsCheckBox,1),
+        new Meteorite(-150, settingsCheckBox,1),
+        new Meteorite(-500, settingsCheckBox,1),
+        new Meteorite(-100, settingsCheckBox,2),
+        new Meteorite(-300, settingsCheckBox,2),
+        new Meteorite(-800, settingsCheckBox,2),
+        new Meteorite(-200, settingsCheckBox,3),   
+        new Meteorite(-400, settingsCheckBox,3),
+        new Meteorite(-30, settingsCheckBox,3)   
             
     };
-     
+     player = new Player("LoGiTeCh MX3 MOUSE");
      ship = new Ship();
    
         gamePanel.setLayout((null));   
@@ -55,7 +58,12 @@ public class GameGUI extends JFrame implements ActionListener{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        gamePanel.setBackground(new java.awt.Color(0, 0, 0));
         gamePanel.setForeground(new java.awt.Color(0, 0, 0));
+
+        ansInput.setFont(new java.awt.Font("L M Sans17", 1, 24)); // NOI18N
+        ansInput.setForeground(new java.awt.Color(255, 255, 255));
+        ansInput.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.gray, null, null));
 
         javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(gamePanel);
         gamePanel.setLayout(gamePanelLayout);
@@ -63,14 +71,14 @@ public class GameGUI extends JFrame implements ActionListener{
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gamePanelLayout.createSequentialGroup()
                 .addGap(420, 420, 420)
-                .addComponent(ansInput, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(533, Short.MAX_VALUE))
+                .addComponent(ansInput, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(602, Short.MAX_VALUE))
         );
         gamePanelLayout.setVerticalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gamePanelLayout.createSequentialGroup()
-                .addComponent(ansInput, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1000, Short.MAX_VALUE))
+                .addComponent(ansInput, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 982, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -92,6 +100,7 @@ public class GameGUI extends JFrame implements ActionListener{
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GameGUI().setVisible(true);
+               
             }
         });
     }
@@ -106,9 +115,43 @@ public class GameGUI extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         for (Meteorite meteorite : meteorites){
             meteorite.moveMeteorite();
+            if ( meteorite.y >= 900){
+            meteoriteHitsGround(meteorite);
+        }
+            ansCheck(meteorite);
             
         }
-
+        
     }
+    
+        
+    
+    
+    public void ansCheck(Meteorite meteorite){
+        if((ship.column==meteorite.column) && ansInput.getText() != "" && meteorite.y<900 && meteorite.y>=1 ){
+            if( (Integer.parseInt(ansInput.getText())==meteorite.mathOperation.result)){
+            System.out.println("dupa");
+            ansInput.setText("");
+            meteorite.y=1200;
+            player.score+=10;
+            System.out.println(player.score);
+            }
+        }
+    }
+    
+    public void meteoriteHitsGround(Meteorite meteorite){
+          
+            int min = -1;
+            int max = -400;
+            int newy = (int)Math.floor(Math.random()*(max-min+1)+min);
+            player.life--;
+            System.out.println(player.life);
+            //seticon wybuchu
+            meteorite.initLocation(meteorite.x ,newy );
+            meteorite.assignOperation();
+        
+    }
+    
+   
  
 }

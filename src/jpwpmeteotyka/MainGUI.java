@@ -66,9 +66,12 @@ public class MainGUI extends JFrame implements KeyListener{
         menuGUI.playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                gameGUI.settingsCheckBox = settingsGUI.settingsCheckBox;
                 gameGUI.initGameGUI();
+                
                 mainPanel.add(gamePanel,"gamePanel");
                 cardLayout.show(mainPanel, "gamePanel");
+                
                 
             
 
@@ -85,6 +88,7 @@ public class MainGUI extends JFrame implements KeyListener{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1280, 1024));
 
+        mainPanel.setBackground(new java.awt.Color(0, 0, 0));
         mainPanel.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
@@ -95,7 +99,7 @@ public class MainGUI extends JFrame implements KeyListener{
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 591, Short.MAX_VALUE)
+            .addGap(0, 1024, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -128,9 +132,12 @@ public class MainGUI extends JFrame implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-        System.out.println("Key Typed: " + e.getKeyChar());
         gameGUI.ansInput.setText(gameGUI.ansInput.getText() + e.getKeyChar());
+         if(e.getKeyChar() == KeyEvent.VK_BACK_SPACE){
+        gameGUI.ansInput.setText("");
     }
+    }
+   
 
     @Override
     public void keyPressed(KeyEvent e) {

@@ -2,6 +2,7 @@ package jpwpmeteotyka;
 
 
 public class MathOperation {
+        
         int mina;
         int maxa;
         int minb;
